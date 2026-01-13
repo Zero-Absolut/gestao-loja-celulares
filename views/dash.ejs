@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | Phone Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f4f6f9;
+    }
+
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: #111827;
+    }
+
+    .sidebar a {
+      color: #9ca3af;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #1f2937;
+      color: #fff;
+    }
+
+    .card-dashboard {
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+  </style>
+</head>
+<body>
+
+<div class="d-flex">
+
+  <!-- Sidebar -->
+  <%- include('partials/sidebar') %>
+
+  <!-- Conteúdo -->
+  <main class="flex-grow-1 p-4">
+
+    <!-- Topo -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="fw-bold">Dashboard</h3>
+      <span class="text-muted">Bem-vindo, Administrador</span>
+    </div>
+
+    <!-- Cards -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-3">
+        <div class="card card-dashboard p-3">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-cash-coin fs-2 text-success me-3"></i>
+            <div>
+              <small class="text-muted">Faturamento</small>
+              <h5 class="mb-0">R$ 12.450,00</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card card-dashboard p-3">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-cart-check fs-2 text-primary me-3"></i>
+            <div>
+              <small class="text-muted">Vendas Hoje</small>
+              <h5 class="mb-0">8</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card card-dashboard p-3">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-tools fs-2 text-warning me-3"></i>
+            <div>
+              <small class="text-muted">OS Abertas</small>
+              <h5 class="mb-0">5</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card card-dashboard p-3">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-exclamation-triangle fs-2 text-danger me-3"></i>
+            <div>
+              <small class="text-muted">Estoque Baixo</small>
+              <h5 class="mb-0">3</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabela OS -->
+    <div class="card card-dashboard">
+      <div class="card-header bg-white fw-semibold">
+        Últimas Ordens de Serviço
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Cliente</th>
+              <th>Aparelho</th>
+              <th>Status</th>
+              <th>Técnico</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#101</td>
+              <td>João Silva</td>
+              <td>iPhone 11</td>
+              <td><span class="badge bg-warning">Em Reparo</span></td>
+              <td>Carlos</td>
+              <td>05/01/2026</td>
+            </tr>
+            <tr>
+              <td>#102</td>
+              <td>Maria Souza</td>
+              <td>Samsung S21</td>
+              <td><span class="badge bg-success">Concluída</span></td>
+              <td>André</td>
+              <td>04/01/2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
