@@ -68,11 +68,4 @@ export const Produtos = conn.define(
   }
 );
 
-Produtos.sync({ force: false })
-  .then(() => {
-    console.log("Tabela produtos criada/sincronizada");
-  })
-  .catch((err) => {
-    console.log("Erro ao criar tabela produtos", err);
-  });
 export default Produtos;

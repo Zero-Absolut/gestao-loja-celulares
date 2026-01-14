@@ -1,4 +1,4 @@
-import Produtos from "../models/produtos";
+import Produtos from "../models/produtos.js";
 
 export async function insereProdutoSeNaoExistir(dProdutos) {
   const {
@@ -17,40 +17,55 @@ export async function insereProdutoSeNaoExistir(dProdutos) {
     obs,
   } = dProdutos;
 
+  let resposta = {
+    sucesso: true,
+    msgErro: [],
+  };
+
   try {
     const produto = await Produtos.findOne({
       where: { codigo: codigo },
     });
 
     if (produto) {
-      return { sucesso: false, msgErro: "Produto já cadastrado" };
+      resposta.sucesso = false;
+      resposta.msgErro.push("Produto já cadastrado.");
     }
-    if (precoCusto > precoVenda) {
-      return {
-        secesso: false,
-        msgErro: "Atenção: Preço de custo maior que o preço de venda.",
-      };
+    if (Number(precoCusto) > Number(precoVenda)) {
+      resposta.sucesso = false;
+      resposta.msgErro.push(
+        "Atenção: Preço de revenda menor que o preço de custo."
+      );
     }
+    if (resposta.sucesso === false) {
+      return { resposta };
+    } else {
+      const novoProduto = await Produtos.create({
+        nome: nomeProduto,
+        categoria: categoriaProduto,
+        marca: marcaProduto,
+        modelo: modelo,
+        codigo: codigo,
+        fornecedor: fornecedor,
+        quantidade_estoque: quantidadeEstoque,
+        estoque_minimo: estoqueMinimo,
+        preco_custo: precoCusto,
+        preco_venda: precoVenda,
+        garantia: garantia,
+        status: statu,
+        obs: obs,
+      });
 
-    const novoProduto = await Produtos.create({
-      nome: nomeProduto,
-      categoria: categoriaProduto,
-      marca: marcaProduto,
-      modelo: modelo,
-      codigo: codigo,
-      fornecedor: fornecedor,
-      quantidade_estoque: quantidadeEstoque,
-      estoque_minimo: estoqueMinimo,
-      preco_custo: precoCusto,
-      preco_venda: precoVenda,
-      garantia: garantia,
-      status: statu,
-      obs: obs,
-    });
-
-    return { sucesso: true, msgSucesso: "Produto cadastrado com sucesso." };
+      return { resposta, produto: nomeProduto };
+    }
   } catch (err) {
     console.log("Erro ao cadastrar produto" + err);
-    return { sucesso: false, msgErro: "Erro tecnico ao cadastrar produto." };
+
+    return {
+      resposta: {
+        sucesso: false,
+        msgErro: ["Erro técnico, entre em contato com o suporte."],
+      },
+    };
   }
 }

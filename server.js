@@ -15,6 +15,14 @@ const port = 3000;
 
 app.use("/", authRoutes);
 
+Produtos.sync({ force: false })
+  .then(() => {
+    console.log("Tabela produtos criada/sincronizada");
+  })
+  .catch((err) => {
+    console.log("Erro ao criar tabela produtos", err);
+  });
+
 app.listen(port, () => {
   console.log(`Servidor rodando na porta: ${port}`);
 });

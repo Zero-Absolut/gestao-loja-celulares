@@ -9,15 +9,19 @@ export async function cadastraProdutosController(req, res) {
     if (produtoCadastrado.sucesso === true) {
       res.redirect("/produtos");
     } else {
-      res.render("cadastro-produtos", {
-        msgErro: produtoCadastrado.msgErro,
+      res.render("partials/cadastro-produtos", {
+        msgErro: produtoCadastrado.resposta.msgErro,
         dados: dadosProdutoCadastro,
+        paginaAtual: "produtos",
       });
     }
   } catch (err) {
-    res.render("cadastro-produtos", {
+    console.log(produtoCadastrado);
+
+    res.render("partials/cadastro-produtos", {
       msgErro: "Erro ao cadastrar produto",
       dadosProdutoCadastro,
+      paginaAtual: "produtos",
     });
   }
 }

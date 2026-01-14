@@ -38,7 +38,7 @@ route.get("/cadastro-produtos", (req, res) => {
 });
 
 route.post(
-  "/cadastrar-produto",
+  "/cadastro-produtos",
   regrasCadastroProduto,
   validaProdutosCadastro,
   cadastraProdutosController
