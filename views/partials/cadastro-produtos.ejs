@@ -91,12 +91,14 @@
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">Nome do Produto</label>
+                  <!-- AJustar a mensagem correta amanha pois usei o objeto errado no value, ajustar para o objeto de dados do input-->
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Ex: iPhone 13 Pro"
                     name="nomeProduto"
                     required
+                    value="<%= if(typeof locals.erros.nomeProduto && nomeProduto.length > 0){locals.erros.nomeProduto} %>"
                   />
                 </div>
 
@@ -294,11 +296,13 @@
             ></button>
           </div>
           <div class="modal-body">
-            <%= let mensagem = ""; if(typeof msgErro != 'undefined'){ mensagem =
-            msgErro; }
-            <!-- TERMINAR A LOGICA DE EXIBIÇÃO DOS ERROS AQUI AMANHA-->
+            <% let mensagem = ""; if (typeof msgErro !== 'undefined' &&
+            msgErro.length > 0) { mensagem = msgErro; mensagem.forEach(erro => {
             %>
-            <p id="mensagemErroTexto" class="fs-5 text-center py-3"></p>
+            <p id="mensagemErroTexto" class="fs-5 text-center py-3">
+              <%= erro %>
+            </p>
+            <% }); } else { msgErro = ''; } %>
           </div>
           <div class="modal-footer">
             <button

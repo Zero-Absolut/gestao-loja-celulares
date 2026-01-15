@@ -93,7 +93,7 @@ export function validaProdutosCadastro(req, res, next) {
     return next();
   }
   console.log(erros);
-  const errosValidados = erros.array();
+  const errosValidados = erros.mapped();
 
   const dadosFormulario = req.body;
 
